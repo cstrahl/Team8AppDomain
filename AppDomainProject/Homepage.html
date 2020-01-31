@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+<!--Bootstrap-->
+    <link href="jquery-3.4.1.js" rel="stylesheet">
+    <link href="bootstrap.css" rel="stylesheet">
+    <link href="bootstrap.js" rel="stylesheet">
+<!--CSS Styling-->
+    <link href="Style.css" rel="stylesheet">
+<!--Font & Icons-->
+    <link href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,900&display=swap" rel="stylesheet">
+<!--JS-->
+    <script src="login.js"></script>
+
+    <title>Homepage</title>
+</head>
+
+</div >
+
+<body class="text-center">
+
+<form class="form-signin" name="login-form" method="post">
+    <img alt="logo" class="mb-4" height="110" src="Include/logo.png" width="110">
+    <h1 class="login-h1">Login</h1>
+
+<!--Username-->
+    <input type="text" id="username" autofocus class="form-control" placeholder="Username">
+
+<!--Password-->
+    <input type="password" id="password" class="form-control" placeholder="Password">
+
+<!--Buttons-->
+    <div class="button-customise1">
+
+     <button id="login" class="btn btn-lg btn-light btn-block" type="button" onclick="validate()">Login</button>
+
+    </div>
+
+    <div class="button-customise2">
+    <a href="CreateAccount.html">
+        <button class=" btn-custom btn btn-lg btn-outline-light btn-block" type="button">Create Account <span class="fas fa-user-plus"></span></button>
+    </a>
+    </div>
+<!--Forgot Password-->
+
+    <div class="password">
+        <a href="ForgotPassword.html" style="color: goldenrod">Forgot Password</a>
+    </div>
+</form>
+
+</body>
+</html>
