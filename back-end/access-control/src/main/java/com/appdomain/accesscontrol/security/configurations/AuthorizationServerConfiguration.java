@@ -1,4 +1,4 @@
-package com.appdomain.accesscontrol.configurations;
+package com.appdomain.accesscontrol.security.configurations;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -26,7 +26,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     private UserDetailsService userDetailsService;
 
     @Bean
-    PasswordEncoder passwordEncoder() {
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
@@ -63,9 +63,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
     @Bean
     JwtAccessTokenConverter getTokenEnhancer() {
-        JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
-        jwtAccessTokenConverter.setSigningKey("MXgXfkHLzJgNAuspB3dv");
-        return jwtAccessTokenConverter;
+        return new JwtAccessTokenConverter();
     }
 
 }
