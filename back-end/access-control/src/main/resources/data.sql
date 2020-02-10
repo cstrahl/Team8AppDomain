@@ -12,7 +12,8 @@ CREATE TABLE Users (
   Password_Create_Date    DATETIME NOT NULL,
   Assigned_Role          VARCHAR(100),
   Registered_By          INT,
-  Awaiting_Registration  BOOLEAN
+  Awaiting_Registration  BOOLEAN,
+  Temp_Password          BOOLEAN
 );
 
 INSERT INTO Users (
@@ -27,7 +28,8 @@ INSERT INTO Users (
     Password_Create_Date,
     Assigned_Role,
     Registered_By,
-    Awaiting_Registration
+    Awaiting_Registration,
+    Temp_Password
 ) VALUES (
     'TAdmin0000',
     'Test',
@@ -40,5 +42,6 @@ INSERT INTO Users (
     now(),
     'ROLE_ADMIN',
     1,
+    false,
     false
 );
