@@ -1,6 +1,7 @@
 package com.appdomain.accesscontrol.security.controllers;
 
 import com.appdomain.accesscontrol.security.contracts.CustomUserDetails;
+import com.appdomain.accesscontrol.security.contracts.PasswordUpdateRequest;
 import com.appdomain.accesscontrol.security.contracts.UserRegistrationRequest;
 import com.appdomain.accesscontrol.security.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +37,11 @@ public class UserController {
     @PutMapping("/process-registration")
     public void processRegistration(@RequestBody UserRegistrationRequest registrationRequest) {
         this.userService.processRegistration(registrationRequest);
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @PutMapping("/password")
+    public void updatePassword(@RequestBody PasswordUpdateRequest updateRequest) {
+        this.userService.updatePassword(updateRequest);
     }
 }
