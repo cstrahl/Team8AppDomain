@@ -54,6 +54,9 @@ public class User {
     @Column(name = "Awaiting_Registration")
     private boolean awaitingRegistration;
 
+    @Column(name = "Temp_Password")
+    private boolean tempPassword = false;
+
     public User() {
     }
 
@@ -197,5 +200,13 @@ public class User {
 
     public void setRegisteredBy(Long registeredBy) {
         this.registeredBy = registeredBy;
+    }
+
+    public boolean isTempPassword() {
+        return tempPassword;
+    }
+
+    public void setTempPassword(boolean tempPassword) {
+        this.tempPassword = tempPassword;
     }
 }
