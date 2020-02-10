@@ -29,6 +29,8 @@ public class CustomUserDetails implements UserDetails {
 
     private String role;
 
+    private boolean tempPassword;
+
     @JsonIgnore
     private User user;
 
@@ -41,6 +43,7 @@ public class CustomUserDetails implements UserDetails {
         this.dateOfBirth = user.getDateOfBirth();
         this.lockoutEnd = user.getLockoutEnd();
         this.role = user.getRole();
+        this.tempPassword = user.isTempPassword();
         this.user = user;
     }
 
@@ -75,6 +78,9 @@ public class CustomUserDetails implements UserDetails {
     @Override
     @JsonIgnore
     public boolean isCredentialsNonExpired() {
+        if (user.isTempPassword()) {
+            return user.getPasswordCreateDate().plus(10, ChronoUnit.MINUTES).isAfter(Instant.now());
+        }
         return user.getPasswordCreateDate().plus(180, ChronoUnit.DAYS).isAfter(Instant.now());
     }
 

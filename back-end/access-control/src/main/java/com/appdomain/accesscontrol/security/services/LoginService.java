@@ -2,6 +2,7 @@ package com.appdomain.accesscontrol.security.services;
 
 import com.appdomain.accesscontrol.security.contracts.UserCreationRequest;
 import com.appdomain.accesscontrol.security.domains.User;
+import org.passay.PasswordGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,9 @@ import org.springframework.web.client.HttpClientErrorException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
+
+import static com.appdomain.accesscontrol.security.utils.ConstraintUtils.getPasswordRules;
+import static com.appdomain.accesscontrol.security.utils.ConstraintUtils.isValidPassword;
 
 @Service
 public class LoginService {
@@ -29,11 +33,7 @@ public class LoginService {
 
     public void processCreationRequest(final UserCreationRequest creationRequest) {
         final String passwordCandidate = creationRequest.getPassword();
-        //TODO: write regex for testing password rules
-        //  - Start with letter
-        //  - Contain at least 1 number and 1 special character
-        //  - Minimum 8 characters
-        if (false) {
+        if (!isValidPassword(passwordCandidate)) {
             //TODO: Abstract this to a CustomException where only message needs to be provided
             LOGGER.debug("Password given for user creation does not meet standards");
             throw HttpClientErrorException.create("Password does not meet rules", HttpStatus.BAD_REQUEST,
@@ -68,13 +68,18 @@ public class LoginService {
 
     public void processForgotPassword(final String email) {
         //TODO: Call email syntax check
-        if (!this.userDetailsService.userExistByEmail(email)) {
-            LOGGER.debug("User email provided not found on file for forgot password request");
-            throw HttpClientErrorException.create("User not found", HttpStatus.BAD_REQUEST, "",
-                    null,null,null);
-        }
+        final User user = this.userDetailsService.loadUserByEmail(email);
+        final String tempPassword = this.generateTempPassword();
+        user.setPasswordHash(this.passwordEncoder.encode(tempPassword));
+        user.setPasswordCreateDate(Instant.now());
+        user.setTempPassword(true);
         LOGGER.debug("Sending email to user to reset password: " + email);
         //TODO: Send email
-        //  Include - HMAC Secret that can be verified that user is who they say they are when making actual update.
     }
+
+    private String generateTempPassword() {
+        final PasswordGenerator gen = new PasswordGenerator();
+        return gen.generatePassword(10, getPasswordRules());
+    }
+
 }
