@@ -21,19 +21,19 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PreAuthorize("hasRole(T(com.appdomain.accesscontrol.security.services.enums.Roles).ADMIN.name())")
+    @PreAuthorize("hasRole(ADMIN)")
     @GetMapping("/list")
     public List<CustomUserDetails> getAllUsers() {
         return this.userService.getAllUsers();
     }
 
-    @PreAuthorize("hasRole(T(com.appdomain.accesscontrol.security.services.enums.Roles).ADMIN.name())")
+    @PreAuthorize("hasRole(ADMIN)")
     @GetMapping("/unregistered")
     public List<CustomUserDetails> getUnregisteredUsers() {
         return this.userService.getUnregisteredUsers();
     }
 
-    @PreAuthorize("hasRole(T(com.appdomain.accesscontrol.security.services.enums.Roles).ADMIN.name())")
+    @PreAuthorize("hasRole(ADMIN)")
     @PutMapping("/process-registration")
     public void processRegistration(@RequestBody UserRegistrationRequest registrationRequest) {
         this.userService.processRegistration(registrationRequest);
