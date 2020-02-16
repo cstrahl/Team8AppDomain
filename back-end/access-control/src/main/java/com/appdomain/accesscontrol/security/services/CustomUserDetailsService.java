@@ -3,7 +3,7 @@ package com.appdomain.accesscontrol.security.services;
 import com.appdomain.accesscontrol.security.contracts.CustomUserDetails;
 import com.appdomain.accesscontrol.security.domains.User;
 import com.appdomain.accesscontrol.security.repositories.CustomUserRepository;
-import com.appdomain.accesscontrol.security.enums.Roles;
+import com.appdomain.accesscontrol.security.utils.Roles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.userdetails.UserDetails;
