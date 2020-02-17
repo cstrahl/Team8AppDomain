@@ -18,22 +18,25 @@ import java.util.List;
 @RequestMapping("/users")
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
-    @PreAuthorize("hasRole(ADMIN)")
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/list")
     public List<CustomUserDetails> getAllUsers() {
         return this.userService.getAllUsers();
     }
 
-    @PreAuthorize("hasRole(ADMIN)")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/unregistered")
     public List<CustomUserDetails> getUnregisteredUsers() {
         return this.userService.getUnregisteredUsers();
     }
 
-    @PreAuthorize("hasRole(ADMIN)")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/process-registration")
     public void processRegistration(@RequestBody UserRegistrationRequest registrationRequest) {
         this.userService.processRegistration(registrationRequest);

@@ -26,9 +26,9 @@ public class AccountService {
     }
 
     public void createAccount(final AccountDto accountDto) {
-        final CustomUserDetails currentUser;
+        final String currentUser;
         try {
-            currentUser = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            currentUser = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         } catch (Exception e) {
             throw HttpClientErrorException.create("User Context not found", HttpStatus.UNAUTHORIZED,
                     "", null,null,null);
@@ -46,14 +46,14 @@ public class AccountService {
                         accountDto.getCredit(),
                         accountDto.getBalance(),
                         Instant.now(),
-                        currentUser.getUser().getId(),
+                        currentUser,
                         accountDto.getOrder(),
                         accountDto.getStatementName(),
                         accountDto.getComment()));
     }
 
     public Map<Long, AccountDto> getAllAccounts() {
-        return this.accountRepository.findAllByOrOrderByOrderAsc().stream()
+        return this.accountRepository.findAllByOrderBySortOrderAsc().stream()
                 .filter(Account::isEnabled)
                 .collect(Collectors.toMap(Account::getId, AccountDto::new));
     }
@@ -72,9 +72,9 @@ public class AccountService {
         account.setDebit(accountDto.getDebit());
         account.setCredit(accountDto.getCredit());
         account.setBalance(accountDto.getBalance());
-        account.setOrder(accountDto.getOrder());
+        account.setSortOrder(accountDto.getOrder());
         account.setStatement(accountDto.getStatementName());
-        account.setComment(accountDto.getComment());
+        account.setComments(accountDto.getComment());
         this.accountRepository.save(account);
     }
 

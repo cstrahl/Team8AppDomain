@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/login")
 public class LoginController {
 
-    @Autowired
-    private LoginService loginService;
+    private final LoginService loginService;
+
+    public LoginController(LoginService loginService) {
+        this.loginService = loginService;
+    }
 
     @PostMapping("/user-creation-request")
     public void requestUserCreation(@RequestBody final UserCreationRequest creationRequest) {
