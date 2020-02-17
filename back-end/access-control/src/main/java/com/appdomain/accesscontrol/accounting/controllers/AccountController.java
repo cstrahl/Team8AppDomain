@@ -32,19 +32,19 @@ public class AccountController {
     }
 
     @PostMapping
-    @PreAuthorize("hasRole(ADMIN)")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void createAccount(@RequestBody final AccountDto accountDto) {
         this.accountService.createAccount(accountDto);
     }
 
     @PutMapping
-    @PreAuthorize("hasRole(ADMIN)")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void updateAccount(@RequestBody final AccountDto accountDto) {
         this.accountService.updateAccount(accountDto);
     }
 
     @DeleteMapping("/{accountId}")
-    @PreAuthorize("hasRole(ADMIN)")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void disableAccount(@PathVariable final long accountId) {
         this.accountService.disableAccount(accountId);
     }

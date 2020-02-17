@@ -44,4 +44,38 @@ INSERT INTO Users (
     1,
     false,
     false
+),(
+   'TManager0000',
+   'Test',
+   'Manager',
+   'TestManager@testing.com',
+   now(),
+   '$2a$10$7xCQwLaBoTDmk/E4lksT4OcBWFlKZroC806TgLJVrKmo56GuXbhze',
+   now(),
+   0,
+   now(),
+   'ROLE_ADMIN',
+   1,
+   false,
+   false
+);
+
+DROP TABLE IF EXISTS Accounts;
+CREATE TABLE Accounts (
+    Id               INT AUTO_INCREMENT PRIMARY KEY,
+    Name             VARCHAR(100) UNIQUE,
+    Enabled          BOOLEAN,
+    Description      VARCHAR(250),
+    Side             VARCHAR(50) NOT NULL,
+    Category         VARCHAR(50),
+    Subcategory      VARCHAR(50),
+    Initial_Balance   DOUBLE NOT NULL,
+    Debit            DOUBLE NOT NULL,
+    Credit           DOUBLE NOT NULL,
+    Balance          DOUBLE NOT NULL,
+    Account_Added     DATETIME NOT NULL,
+    Created_By        VARCHAR(50) NOT NULL,
+    Sort_Order        INT NOT NULL,
+    Statement        VARCHAR(50),
+    Comments         VARCHAR(250)
 );
