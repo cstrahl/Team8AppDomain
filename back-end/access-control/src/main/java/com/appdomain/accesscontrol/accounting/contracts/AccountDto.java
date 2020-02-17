@@ -18,7 +18,7 @@ public class AccountDto {
     private double credit;
     private double balance;
     private Instant accountAdded;
-    private long userId;
+    private String userId;
     private int order;
     private String statementName;
     private String comment;
@@ -39,9 +39,9 @@ public class AccountDto {
         this.balance = account.getBalance();
         this.accountAdded = account.getAccountAdded();
         this.userId = account.getCreatedBy();
-        this.order = account.getOrder();
+        this.order = account.getSortOrder();
         this.statementName = account.getStatement();
-        this.comment = account.getComment();
+        this.comment = account.getComments();
     }
 
     public String getName() {
@@ -84,7 +84,7 @@ public class AccountDto {
         return accountAdded;
     }
 
-    public long getUserId() {
+    public String getUserId() {
         return userId;
     }
 

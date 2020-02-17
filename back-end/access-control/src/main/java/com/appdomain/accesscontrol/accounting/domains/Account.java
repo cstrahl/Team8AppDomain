@@ -34,7 +34,7 @@ public class Account {
     @Column(name = "Subcategory")
     private String subcategory;
 
-    @Column(name = "InitialBalance", nullable = false)
+    @Column(name = "Initial_Balance", nullable = false)
     private double initialBalance;
 
     @Column(name = "Debit", nullable = false)
@@ -46,20 +46,23 @@ public class Account {
     @Column(name = "Balance", nullable = false)
     private double balance;
 
-    @Column(name = "AccountAdded", nullable = false, updatable = false)
+    @Column(name = "Account_Added", nullable = false, updatable = false)
     private Instant accountAdded;
 
-    @Column(name = "CreatedBy", nullable = false, updatable = false)
-    private long createdBy;
+    @Column(name = "Created_By", nullable = false, updatable = false)
+    private String createdBy;
 
-    @Column(name = "Order")
-    private int order;
+    @Column(name = "Sort_Order", nullable = false)
+    private int sortOrder;
 
     @Column(name = "Statement")
     private String statement;
 
-    @Column(name = "Comment")
-    private String comment;
+    @Column(name = "Comments")
+    private String comments;
+
+    public Account() {
+    }
 
     public Account(final String name,
                    final boolean enabled,
@@ -72,10 +75,10 @@ public class Account {
                    final double credit,
                    final double balance,
                    final Instant accountAdded,
-                   final long createdBy,
-                   final int order,
+                   final String createdBy,
+                   final int sortOrder,
                    final String statement,
-                   final String comment) {
+                   final String comments) {
         this.name = name;
         this.enabled = enabled;
         this.description = description;
@@ -88,9 +91,9 @@ public class Account {
         this.balance = balance;
         this.accountAdded = accountAdded;
         this.createdBy = createdBy;
-        this.order = order;
+        this.sortOrder = sortOrder;
         this.statement = statement;
-        this.comment = comment;
+        this.comments = comments;
     }
 
     public long getId() {
@@ -137,20 +140,20 @@ public class Account {
         return accountAdded;
     }
 
-    public long getCreatedBy() {
+    public String getCreatedBy() {
         return createdBy;
     }
 
-    public int getOrder() {
-        return order;
+    public int getSortOrder() {
+        return sortOrder;
     }
 
     public String getStatement() {
         return statement;
     }
 
-    public String getComment() {
-        return comment;
+    public String getComments() {
+        return comments;
     }
 
     public void setName(String name) {
@@ -185,16 +188,16 @@ public class Account {
         this.balance = balance;
     }
 
-    public void setOrder(int order) {
-        this.order = order;
+    public void setSortOrder(int sortOrder) {
+        this.sortOrder = sortOrder;
     }
 
     public void setStatement(String statement) {
         this.statement = statement;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setComments(String comments) {
+        this.comments = comments;
     }
 
     public boolean isEnabled() {
