@@ -1,0 +1,54 @@
+﻿<!-- nav -->
+<nav class="navbar navbar-light sticky-top flex-md-nowrap p-3" *ngIf="currentUser">
+    <div class="container-fluid">
+
+        <div class="navbar-expand">
+            <ul class="nav navbar-nav navbar-left">
+
+                <li class="nav-item">
+                    <a class="nav-link nav-logo" href=""> <img src="" alt="" height="40" width="40"></a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" style="color: black;" href="">Accounting Solutions</a>
+                </li>
+
+            </ul>
+        </div>
+
+        <div class="navbar-expand">
+            <ul class="nav navbar-nav navbar-right">
+
+                <li class="nav-item" for="dashboardPicture">
+                    <span class="nav-pic" href=""><img src="" alt="" height="50" width="50"></span>
+                </li>
+                
+                <li class="nav-item nav-custom-1" for="dashboardUsername">
+                    <span class="nav-text">{{currentUser.firstName}} {{currentUser.lastName}}</span>
+                </li>
+
+                <li class="nav-item nav-custom-2" for="dashboardLogout">
+                    
+                        <button (click)="logout()" class="btn btn-md btn-outline-dark btn-block" type="submit">Logout<span class=""></span></button>
+                    
+                </li>
+
+
+
+            </ul>
+        </div>
+        
+    </div>
+</nav>
+
+<!-- main app container -->
+<div>
+    <div class="dash-container">
+        
+                <alert></alert>
+                <router-outlet></router-outlet>
+            
+    </div>
+</div>
+
+<!-- credits -->
