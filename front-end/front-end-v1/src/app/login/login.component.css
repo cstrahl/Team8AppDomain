@@ -1,9 +1,12 @@
 .form-signin{
     width: 50%;
-    margin-left: 25%;
+   
 }
 
 #forgot{
     margin-top: 3px;
     margin-bottom: 15px;
+}
+.login-container{
+    margin-left: 50%;
 }
