@@ -42,7 +42,6 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     @Override
