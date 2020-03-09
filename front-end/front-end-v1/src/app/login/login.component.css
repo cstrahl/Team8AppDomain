@@ -1,6 +1,6 @@
 .form-signin{
     width: 30%;
-   margin-left: 35%;
+   margin-left: 32%;
    max-width: 40%;
    min-width: 250px;
 }
@@ -8,5 +8,9 @@
 #forgot{
     margin-top: 3px;
     margin-bottom: 15px;
+}
+
+.login-container {
+    margin-top: 20px;
 }
 

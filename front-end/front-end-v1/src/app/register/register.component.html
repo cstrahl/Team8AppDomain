@@ -1,0 +1,57 @@
+<div class="container">
+
+    <h1 style="text-align: center;">Create A New Account</h1>
+    <p class="lead" style="text-align: center;">Please fill out the required fields below to create a new account.</p>
+
+    <div style="margin-bottom: 40px;"></div>
+
+    <div class="register-container">
+        <form [formGroup]="registerForm" class="form-register" (ngSubmit)="onSubmit()">
+            <img class="mb-4" src="../../Include/logo.png" alt="" width="72" height="72">
+
+            
+                <label style="margin-bottom: 0; font-size: 15px;">First Name:</label>
+                <input type="text" formControlName="firstName" class="form-control" placeholder="First Name" required
+                    autofocus>
+           
+
+            <div style="margin-bottom: 15px;"></div>
+
+            <span>
+                <label style="margin-bottom: 0; font-size: 15px;">Last Name:</label>
+                <input type="text" formControlName="lastName" class="form-control" placeholder="Last Name" required>
+            </span>
+            <div style="margin-bottom: 15px;"></div>
+
+            <span>
+                <label style="margin-bottom: 0; font-size: 15px;" >Email:</label>
+                <input type="text" formControlName="email" class="form-control" placeholder="Email" required>
+            </span>
+            <div style="margin-bottom: 15px;"></div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit" >Submit</button>
+
+        </form>
+    </div>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
