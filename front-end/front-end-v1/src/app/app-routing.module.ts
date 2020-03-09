@@ -5,6 +5,9 @@ import { HomeComponent } from './home/home.component';
 import { AccountsComponent } from './accounts/accounts.component';
 import { AuthGuard } from './helpers';
 import { RegisterComponent } from './register/register.component';
+import { AddAccountComponent } from './add-account/add-account.component';
+import { ViewComponent } from './view/view.component';
+
 
 const routes: Routes = [
 
@@ -13,7 +16,8 @@ const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'accounts', component: AccountsComponent },
   { path: 'register', component: RegisterComponent },
-
+  { path: 'addAccount', component: AddAccountComponent },
+  { path: 'viewAccount', component: ViewComponent },
   
   // otherwise redirect to home
   { path: '**', redirectTo: 'login' }

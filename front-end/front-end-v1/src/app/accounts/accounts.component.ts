@@ -23,4 +23,14 @@ export class AccountsComponent implements OnInit {
   navAccounts(){
     this.router.navigate(['/accounts']);
   }
+
+  navAddAccount(){
+    this.router.navigate(['/addAccount']);
+  }
+
+  navView(){
+    this.router.navigate(['/viewAccount']);
+  }
+
+  
 }
