@@ -1,3 +1,4 @@
+
 <div id="wrapper">
 
   <!-- Sidebar -->
@@ -14,56 +15,30 @@
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
 
-    <!-- Nav Item - Dashboard -->
-    <li class="nav-item">
-      <a class="nav-link" href="index.html">
+    <!-- Nav Item - Home -->
+    <li class="nav-item active">
+      <a class="nav-link" href="/home">
         <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>Dashboard</span></a>
+        <span>Home</span></a>
     </li>
 
     <!-- Divider -->
-    <hr class="sidebar-divider">
+    <hr class="sidebar-divider my-0">
 
-
-    <!-- Heading -->
-    <div class="sidebar-heading">
-      Addons
-    </div>
-
-    <!-- Nav Item - Pages Collapse Menu -->
+    <!-- Nav Item - Accounts -->
     <li class="nav-item">
-      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
-        aria-controls="collapsePages">
-        <i class="fas fa-fw fa-folder"></i>
-        <span>Pages</span>
-      </a>
-      <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-          <a class="collapse-item" href="login.html">Login</a>
-          <a class="collapse-item" href="register.html">Register</a>
-
-        </div>
-      </div>
-    </li>
-
-    <!-- Nav Item - Charts -->
-    <li class="nav-item">
-      <a class="nav-link" href="charts.html">
-        <i class="fas fa-fw fa-chart-area"></i>
-        <span>Charts</span></a>
-    </li>
-
-    <!-- Nav Item - Tables -->
-    <li class="nav-item active">
-      <a class="nav-link" href="tables.html">
+      <a class="nav-link" href="/accounts">
         <i class="fas fa-fw fa-table"></i>
-        <span>Current Page</span></a>
+        <span>Accounts</span></a>
     </li>
 
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
 
 
   </ul>
-  <!-- End of Sidebar -->
+  <!--****************************** End of Sidebar **************************************-->
+
 
   <!-- Content Wrapper-->
   <div id="content-wrapper" class="d-flex flex-column">
@@ -72,7 +47,8 @@
     <!-- Main Content -->
     <div id="content">
 
-      <!-- Topbar -->
+
+      <!--****************************** Topbar ********************************************-->
       <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
         <!-- Topbar Navbar -->
@@ -86,14 +62,14 @@
               <span class="mr-2 d-lg-inline text-gray-600 medium">Fred Rogers</span>
               <img class=" rounded-circle" width="50" height="50"
                 src="https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cg_face%2Cq_auto:good%2Cw_300/MTY4MzI5NjA5OTc5NDM5MDYy/fred-rogers-1928---2003-of-the-television-series-mister-rogers-neighborhood-circa-1980s-photo-by-fotos-internationalcourtesy-of-getty-images.jpg">
-              
+
             </div>
 
           </li>
           <li class="nav-item">
             <div class="nav-link" href="/home">
-              
-              <button class="btn btn-md btn-outline-dark btn-block" type="button">Logout</button>
+
+              <button class="btn btn-md btn-outline-dark btn-block" type="button" (click)="logout()">Logout</button>
             </div>
 
           </li>
@@ -102,8 +78,19 @@
 
 
       </nav>
+      <!--****************************** End of Topbar ************************************************************-->
 
+      <!-- Begin Page Content -->
+      <div class="container-fluid">
 
+        <!-- Page Heading -->
+        <h1 class="h3 mb-2 text-gray-800">Home</h1>
+        <p class="mb-4"></p>
+
+        
+
+      </div>
+      <!-- /.container-fluid -->
 
     </div>
     <!-- End of Main Content -->

@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import '../Include/logo.png';
+import { AccountsComponent } from './accounts/accounts.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    AccountsComponent
   ],
   imports: [
     BrowserModule,
