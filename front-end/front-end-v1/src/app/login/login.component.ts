@@ -29,6 +29,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(){
+<<<<<<< HEAD
     this.router.navigate(['/home']);
 
     // const body = new HttpParams()
@@ -44,6 +45,22 @@ export class LoginComponent implements OnInit {
     //     alert(error.error.error_description)
     // });
 
+=======
+    // this.router.navigate(['/home']);
+
+    const body = new HttpParams()
+      .set('username', this.loginForm.controls.username.value)
+      .set('password', this.loginForm.controls.password.value)
+      .set('grant_type', 'password');
+
+    this.AppService.login(body.toString()).subscribe(data => {
+      window.sessionStorage.setItem('token', JSON.stringify(data));
+      console.log(window.sessionStorage.getItem('token'));
+      this.router.navigate(['/home']);
+    }, error => {
+        alert(error.error.error_description)
+    });
+>>>>>>> origin/front-v2
   }
 
   createAccount(){

@@ -10,6 +10,7 @@ import '../Include/logo.png';
 import { AccountsComponent } from './accounts/accounts.component';
 import { RegisterComponent } from './register/register.component';
 import { AddAccountComponent } from './add-account/add-account.component';
+<<<<<<< HEAD
 import { ViewComponent } from './view-account/view.component';
 import { AppService } from './services/app.service';
 import { AccountService } from './services/account.service';
@@ -19,6 +20,10 @@ import { AddUserComponent } from './add-user/add-user.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 
 
+=======
+import { ViewComponent } from './view/view.component';
+import { AppService } from './services/app.service';
+>>>>>>> origin/front-v2
 
 @NgModule({
   declarations: [
@@ -28,11 +33,15 @@ import { EditUserComponent } from './edit-user/edit-user.component';
     AccountsComponent,
     RegisterComponent,
     AddAccountComponent,
+<<<<<<< HEAD
     ViewComponent,
     UsersComponent,
     EditAccountComponent,
     AddUserComponent,
     EditUserComponent
+=======
+    ViewComponent
+>>>>>>> origin/front-v2
   ],
   imports: [
     BrowserModule,
@@ -40,7 +49,11 @@ import { EditUserComponent } from './edit-user/edit-user.component';
     HttpClientModule,
     AppRoutingModule,
   ],
+<<<<<<< HEAD
   providers: [AppService, AccountService],
+=======
+  providers: [AppService],
+>>>>>>> origin/front-v2
   bootstrap: [AppComponent]
 })
 export class AppModule { }

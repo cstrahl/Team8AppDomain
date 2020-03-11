@@ -24,8 +24,11 @@ export class AddAccountComponent implements OnInit {
     this.router.navigate(['/accounts']);
   }
 
+<<<<<<< HEAD
   logout(){
     this.router.navigate(['/login']);
   }
 
+=======
+>>>>>>> origin/front-v2
 }
