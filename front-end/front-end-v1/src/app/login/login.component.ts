@@ -10,7 +10,8 @@ import { HttpParams } from '@angular/common/http';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginForm = new FormGroup({
+
+    loginForm = new FormGroup({
     username: new FormControl(''),
     password: new FormControl(''),
   });

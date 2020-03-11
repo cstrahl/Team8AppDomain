@@ -109,14 +109,14 @@
           <div class="row">
               <div class="col-md-6 mb-3">
                   <label for="firstName">Account Name</label>
-                  <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                  <input type="text" class="form-control" formControlName="name" id="firstName" placeholder="" value="" required>
                   <div class="invalid-feedback">
                       Valid first name is required.
                   </div>
               </div>
               <div class="col-md-6 mb-3">
                   <label for="lastName">Account Number</label>
-                  <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                  <input type="text" class="form-control" formControlName="accountNumber" id="lastName" placeholder="" value="" required>
                   <div class="invalid-feedback">
                       Valid last name is required.
                   </div>
@@ -126,7 +126,7 @@
 
           <div class="">
               <label for="firstName">Account Description</label>
-              <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+              <input type="text" class="form-control" formControlName="description" id="firstName" placeholder="" value="" required>
               <div class="invalid-feedback">
                   Valid first name is required.
               </div>
@@ -136,21 +136,21 @@
           <div class="row">
               <div class="col-md-4 mb-3">
                   <label for="firstName">Normal Side</label>
-                  <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                  <input type="text" class="form-control" formControlName="normalSide" id="firstName" placeholder="" value="" required>
                   <div class="invalid-feedback">
                       Valid first name is required.
                   </div>
               </div>
               <div class="col-md-4 mb-3">
                   <label for="lastName">Account Category</label>
-                  <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                  <input type="text" class="form-control" formControlName="category" id="lastName" placeholder="" value="" required>
                   <div class="invalid-feedback">
                       Valid last name is required.
                   </div>
               </div>
               <div class="col-md-4 mb-3">
                   <label for="lastName">Account Subcategory</label>
-                  <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                  <input type="text" class="form-control" formControlName="subcategory" id="lastName" placeholder="" value="" required>
                   <div class="invalid-feedback">
                       Valid last name is required.
                   </div>
@@ -160,21 +160,21 @@
           <div class="row">
               <div class="col-md-4 mb-3">
                   <label for="firstName">Initial Balance</label>
-                  <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                  <input type="text" class="form-control" formControlName="initialBalance" id="firstName" placeholder="" value="" required>
                   <div class="invalid-feedback">
                       Valid first name is required.
                   </div>
               </div>
               <div class="col-md-4 mb-3">
                   <label for="lastName">Debit</label>
-                  <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                  <input type="text" class="form-control" formControlName="debit" id="lastName" placeholder="" value="" required>
                   <div class="invalid-feedback">
                       Valid last name is required.
                   </div>
               </div>
               <div class="col-md-4 mb-3">
                   <label for="lastName">Credit</label>
-                  <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                  <input type="text" class="form-control" formControlName="credit" id="lastName" placeholder="" value="" required>
                   <div class="invalid-feedback">
                       Valid last name is required.
                   </div>
@@ -184,21 +184,21 @@
           <div class="row">
               <div class="col-md-4 mb-3">
                   <label for="firstName">Date Added</label>
-                  <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                  <input type="text" class="form-control" formControlName="accountAdded" id="firstName" placeholder="" value="" required>
                   <div class="invalid-feedback">
                       Valid first name is required.
                   </div>
               </div>
               <div class="col-md-4 mb-3">
                   <label for="lastName">User ID</label>
-                  <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                  <input type="text" class="form-control" formControlName="userId" id="lastName" placeholder="" value="" required>
                   <div class="invalid-feedback">
                       Valid last name is required.
                   </div>
               </div>
               <div class="col-md-4 mb-3">
                   <label for="lastName">Order</label>
-                  <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                  <input type="text" class="form-control" formControlName="order" id="lastName" placeholder="" value="" required>
                   <div class="invalid-feedback">
                       Valid last name is required.
                   </div>
@@ -208,14 +208,14 @@
           <div class="row">
               <div class="col-md-6 mb-3">
                   <label for="firstName">Statement</label>
-                  <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                  <input type="text" class="form-control" formControlName="statementName" id="firstName" placeholder="" value="" required>
                   <div class="invalid-feedback">
                       Valid first name is required.
                   </div>
               </div>
               <div class="col-md-6 mb-3">
                   <label for="lastName">Comment</label>
-                  <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                  <input type="text" class="form-control" formControlName="comment" id="lastName" placeholder="" value="" required>
                   <div class="invalid-feedback">
                       Valid last name is required.
                   </div>
@@ -223,7 +223,7 @@
           </div>
 
 
-          <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+          <button type="button" class="btn btn-lg btn-primary btn-block" (click)="onSubmit()" >Submit</button>
 
           <div style="margin-bottom: 15px;"></div>
 

@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { HttpClient, HttpParams } from "@angular/common/http";
-import { accounts } from '../accounts/mock-data'
+import { Account } from '../models/account'
 import { User } from '../models/user';
 
 
@@ -31,7 +31,32 @@ export class AppService {
   }
 
   getAccounts(){
-    return this.http.get(this.baseUrl + 'accounts/' + 'accounts?access_token=' + JSON.parse(window.sessionStorage.getItem('token')).access_token);
+    const headers = {
+      Authorization: "Bearer " + JSON.parse(window.sessionStorage.getItem('token')).access_token
+    };
+    return this.http.get(
+      "http://localhost:8080/api/v1/accounts",
+      { headers }
+    );
+
+        // return this.http.get(this.baseUrl + 'accounts/' + 'accounts?access_token=' + JSON.parse(window.sessionStorage.getItem('token')).access_token);
+
+  }
+
+  createAccount(account){
+    const headers = {
+      Authorization: "Bearer " + JSON.parse(window.sessionStorage.getItem('token')).access_token
+    };
+
+
+    return this.http.post(
+      "http://localhost:8080/api/v1/accounts",
+        account,
+      { headers }
+    );
+
+
+    // return this.http.post(this.baseUrl + 'user?access_token=' + JSON.parse(window.sessionStorage.getItem('token')).access_token, user);
   }
 
 

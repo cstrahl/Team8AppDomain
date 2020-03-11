@@ -15,18 +15,18 @@ class Account {
 }
 
 const Accounts: Account[] = [
-  {
-    id: 1,
-    name: 'SpaceX',
-    dateCreated: '1/14/19',
-    balance: 4036772.48,
-  },
-  {
-    id: 1,
-    name: 'Creighton Publishers',
-    dateCreated: '4/6/18',
-    balance: 20592.48,
-  },
+  // {
+  //   id: 1,
+  //   name: 'SpaceX',
+  //   dateCreated: '1/14/19',
+  //   balance: 4036772.48,
+  // },
+  // {
+  //   id: 1,
+  //   name: 'Creighton Publishers',
+  //   dateCreated: '4/6/18',
+  //   balance: 20592.48,
+  // },
 
 ];
 
@@ -37,15 +37,15 @@ const Accounts: Account[] = [
 })
 export class AccountsComponent implements OnInit {
 
-  accounts = Accounts;
+  accounts: Account[];
   filter = new FormControl('');
 
   constructor(private router: Router, private AppService: AppService) { }
 
   ngOnInit(): void {
-    // this.AppService.getAccounts().subscribe(data => {
-    //   this.accounts;
-    // });
+    this.AppService.getAccounts().subscribe(data => {
+      this.accounts;
+    });
   }
 
   logout() {
@@ -61,6 +61,10 @@ export class AccountsComponent implements OnInit {
   }
 
   navAddAccount() {
+    this.router.navigate(['/addAccount']);
+  }
+
+  navEditAccount() {
     this.router.navigate(['/addAccount']);
   }
 

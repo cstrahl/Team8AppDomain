@@ -1,5 +1,4 @@
 export class Account {
-    id: number;
     name: string;
     accountNumber: number;
     description: string;
