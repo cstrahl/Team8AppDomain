@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AccountService } from '../services/account.service';
-<<<<<<< HEAD
 import {AppService} from '../services/app.service'
 import { HttpParams } from '@angular/common/http';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
@@ -30,8 +29,6 @@ const Accounts: Account[] = [
   },
 
 ];
-=======
->>>>>>> origin/front-v2
 
 @Component({
   selector: 'app-accounts',
@@ -40,7 +37,6 @@ const Accounts: Account[] = [
 })
 export class AccountsComponent implements OnInit {
 
-<<<<<<< HEAD
   accounts = Accounts;
   filter = new FormControl('');
 
@@ -52,18 +48,6 @@ export class AccountsComponent implements OnInit {
     // });
   }
 
-=======
-  accounts: Account[];
-
-  constructor(private router: Router, private AccountService: AccountService) { }
-
-  ngOnInit(): void {
-    this.AccountService.findAll().subscribe(data => {
-      //this.accounts = data;
-    });
-  }
-  
->>>>>>> origin/front-v2
   logout() {
     this.router.navigate(['/login']);
   }

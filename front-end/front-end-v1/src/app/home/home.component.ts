@@ -7,11 +7,6 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-<<<<<<< HEAD
-
-=======
- 
->>>>>>> origin/front-v2
 
   constructor(private router: Router,) { }
 
@@ -30,11 +25,8 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/accounts']);
   }
 
-<<<<<<< HEAD
   navUsers(){
     this.router.navigate(['/users']);
   }
 
-=======
->>>>>>> origin/front-v2
 }
