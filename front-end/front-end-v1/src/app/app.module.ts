@@ -14,6 +14,9 @@ import { ViewComponent } from './view-account/view.component';
 import { AppService } from './services/app.service';
 import { AccountService } from './services/account.service';
 import { UsersComponent } from './users/users.component';
+import { EditAccountComponent } from './edit-account/edit-account.component';
+import { AddUserComponent } from './add-user/add-user.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 
 
@@ -26,7 +29,10 @@ import { UsersComponent } from './users/users.component';
     RegisterComponent,
     AddAccountComponent,
     ViewComponent,
-    UsersComponent
+    UsersComponent,
+    EditAccountComponent,
+    AddUserComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserModule,

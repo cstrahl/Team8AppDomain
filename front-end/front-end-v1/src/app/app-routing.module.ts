@@ -8,6 +8,9 @@ import { RegisterComponent } from './register/register.component';
 import { AddAccountComponent } from './add-account/add-account.component';
 import { ViewComponent } from './view-account/view.component';
 import { UsersComponent } from './users/users.component';
+import { AddUserComponent } from './add-user/add-user.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
+import { EditAccountComponent } from './edit-account/edit-account.component';
 
 
 const routes: Routes = [
@@ -19,7 +22,10 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'addAccount', component: AddAccountComponent },
   { path: 'viewAccount', component: ViewComponent },
+  { path: 'editAccount', component: EditAccountComponent },
   { path: 'users', component: UsersComponent },
+  { path: 'addUser', component: AddUserComponent },
+  { path: 'editUser', component: EditUserComponent },
 
   // otherwise redirect to home
   { path: '**', redirectTo: 'login' }
