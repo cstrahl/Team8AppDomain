@@ -10,8 +10,12 @@ import '../Include/logo.png';
 import { AccountsComponent } from './accounts/accounts.component';
 import { RegisterComponent } from './register/register.component';
 import { AddAccountComponent } from './add-account/add-account.component';
-import { ViewComponent } from './view/view.component';
+import { ViewComponent } from './view-account/view.component';
 import { AppService } from './services/app.service';
+import { AccountService } from './services/account.service';
+import { UsersComponent } from './users/users.component';
+
+
 
 @NgModule({
   declarations: [
@@ -21,7 +25,8 @@ import { AppService } from './services/app.service';
     AccountsComponent,
     RegisterComponent,
     AddAccountComponent,
-    ViewComponent
+    ViewComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +34,7 @@ import { AppService } from './services/app.service';
     HttpClientModule,
     AppRoutingModule,
   ],
-  providers: [AppService],
+  providers: [AppService, AccountService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

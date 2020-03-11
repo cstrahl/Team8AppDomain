@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-view',
@@ -8,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class ViewComponent implements OnInit {
 
+  viewAccountForm = new FormGroup({});
   constructor(private router: Router,) { }
 
   ngOnInit(): void {
@@ -16,4 +18,9 @@ export class ViewComponent implements OnInit {
   navAccounts(){
     this.router.navigate(['/accounts']);
   }
+
+  logout(){
+    this.router.navigate(['/login']);
+  }
+
 }

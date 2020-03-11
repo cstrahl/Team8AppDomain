@@ -6,7 +6,8 @@ import { AccountsComponent } from './accounts/accounts.component';
 import { AuthGuard } from './helpers';
 import { RegisterComponent } from './register/register.component';
 import { AddAccountComponent } from './add-account/add-account.component';
-import { ViewComponent } from './view/view.component';
+import { ViewComponent } from './view-account/view.component';
+import { UsersComponent } from './users/users.component';
 
 
 const routes: Routes = [
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'addAccount', component: AddAccountComponent },
   { path: 'viewAccount', component: ViewComponent },
-  
+  { path: 'users', component: UsersComponent },
+
   // otherwise redirect to home
   { path: '**', redirectTo: 'login' }
 

@@ -24,4 +24,8 @@ export class AddAccountComponent implements OnInit {
     this.router.navigate(['/accounts']);
   }
 
+  logout(){
+    this.router.navigate(['/login']);
+  }
+
 }

@@ -23,7 +23,7 @@
     <hr class="sidebar-divider my-0" />
 
     <!-- Nav Item - Accounts -->
-    <li class="nav-item active">
+    <li class="nav-item">
       <a class="nav-link" href="/accounts">
         <i class="fas fa-fw fa-table"></i>
         <span>Accounts</span></a>
@@ -33,7 +33,7 @@
     <hr class="sidebar-divider my-0" />
 
     <!-- Nav Item - Users -->
-    <li class="nav-item">
+    <li class="nav-item active">
       <a class="nav-link" href="/users">
         <i class="fas fa-fw fa-table"></i>
         <span>Users</span></a>
@@ -78,7 +78,7 @@
       <!-- Begin Page Content -->
       <div class="container-fluid">
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">Accounts</h1>
+        <h1 class="h3 mb-2 text-gray-800">Users</h1>
         <p class="mb-4"></p>
 
         <!-- DataTales Example -->
@@ -86,43 +86,52 @@
           <div class="card-body">
             <div class="table-responsive">
               <div style="margin-bottom: 15px;">
-                <button (click)="navAddAccount()" class="btn btn-lg btn-info">
-                  Add Account
+                <button class="btn btn-lg btn-info">
+                  Add User
                 </button>
                 <div class="form-group form-inline" style="float: right; margin-right: 5%;">
                   Search: <input class="form-control ml-2" type="text" [formControl]="filter"/>
                 </div>
               </div>
+
+
+
+
               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                   <tr>
                     <th>ID #</th>
-                    <th>Name</th>
-                    <th>Created</th>
-                    <th>Balance</th>
+                    <th>Username</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                    <th></th>
                     <th></th>
                     <th></th>
                     <th></th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let account of accounts; index as i">
-                    <td>{{ account.id }}</td>
-                    <td>{{ account.name }}</td>
-                    <td>{{ account.dateCreated }}</td>
-                    <td>{{ account.balance }}</td>
+                  <tr *ngFor="let user of users; index as i">
+
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.role }}</td>
+                    <td>{{ user.status }}</td>
                     <td>
-                      <button class="btn btn-sm btn-dark" (click)="navView()">
-                        view
-                      </button>
-                    </td>
-                    <td>
-                      <button class="btn btn-sm btn-primary" (click)="navAddAccount()">
+                      <button class="btn btn-sm btn-primary">
                         edit
                       </button>
                     </td>
                     <td>
-                      <button class="btn btn-sm btn-danger">delete</button>
+                      <button class="btn btn-sm btn-success">
+                        activate
+                      </button>
+                    </td>
+                    <td>
+                      <button class="btn btn-sm btn-danger">deactivate</button>
+                    </td>
+                    <td>
+                      <button class="btn btn-sm btn-light">email</button>
                     </td>
                   </tr>
                 </tbody>

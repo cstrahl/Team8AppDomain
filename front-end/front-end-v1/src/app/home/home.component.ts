@@ -7,7 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
- 
+
 
   constructor(private router: Router,) { }
 
@@ -24,6 +24,10 @@ export class HomeComponent implements OnInit {
 
   navAccounts(){
     this.router.navigate(['/accounts']);
+  }
+
+  navUsers(){
+    this.router.navigate(['/users']);
   }
 
 }
