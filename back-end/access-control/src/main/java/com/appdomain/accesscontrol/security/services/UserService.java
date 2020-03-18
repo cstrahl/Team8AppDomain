@@ -4,6 +4,7 @@ import com.appdomain.accesscontrol.security.contracts.CustomUserDetails;
 import com.appdomain.accesscontrol.security.contracts.PasswordUpdateRequest;
 import com.appdomain.accesscontrol.security.contracts.UserRegistrationRequest;
 import com.appdomain.accesscontrol.security.domains.User;
+import com.appdomain.accesscontrol.security.utils.UserContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -39,7 +40,7 @@ public class UserService {
                     registrationRequest.getUserEmail());
         }
 
-        final CustomUserDetails currentAdmin = this.getCurrentUser();
+        final CustomUserDetails currentAdmin = UserContext.getCurrentUser();
         if (!currentAdmin.getUser().getRole().equals("ROLE_ADMIN")) {
             throw HttpClientErrorException.create("Current user is not authorized for this action",
                     HttpStatus.UNAUTHORIZED, "",null,null,null);
@@ -54,15 +55,6 @@ public class UserService {
         } else {
             this.userDetailsService.deleteUser(user);
             //TODO: Send email to the user including registrationRequest.denialReason();
-        }
-    }
-
-    private CustomUserDetails getCurrentUser() {
-        try {
-            return (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        } catch (Exception e) {
-            throw HttpClientErrorException.create("User Context not found", HttpStatus.UNAUTHORIZED,
-                    "", null,null,null);
         }
     }
 
@@ -91,7 +83,7 @@ public class UserService {
                     "",null,null,null);
         }
 
-        final User user = this.getCurrentUser().getUser();
+        final User user = UserContext.getCurrentUser().getUser();
         if (!user.isTempPassword()) {
             //TODO: Register users old password hash in password history table
         }
