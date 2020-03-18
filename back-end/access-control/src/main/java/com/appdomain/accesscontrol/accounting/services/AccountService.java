@@ -3,7 +3,6 @@ package com.appdomain.accesscontrol.accounting.services;
 import com.appdomain.accesscontrol.accounting.contracts.AccountDto;
 import com.appdomain.accesscontrol.accounting.domains.Account;
 import com.appdomain.accesscontrol.accounting.repositories.AccountRepository;
-import com.appdomain.accesscontrol.security.contracts.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -12,7 +11,9 @@ import org.springframework.web.client.HttpClientErrorException;
 
 import java.nio.charset.Charset;
 import java.time.Instant;
+import java.util.Collection;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,7 +32,7 @@ public class AccountService {
             currentUser = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         } catch (Exception e) {
             throw HttpClientErrorException.create("User Context not found", HttpStatus.UNAUTHORIZED,
-                    "", null,null,null);
+                    "", null, null, null);
         }
         this.accountRepository.save(
                 new Account(
@@ -62,6 +63,10 @@ public class AccountService {
         return new AccountDto(getAccountOrThrowException(accountId));
     }
 
+    public Account getAccountById(final long accountId) {
+        return this.getAccountOrThrowException(accountId);
+    }
+
     public void updateAccount(final AccountDto accountDto) {
         final Account account = getAccountOrThrowException(accountDto.getAccountNumber());
         account.setName(accountDto.getName());
@@ -76,6 +81,10 @@ public class AccountService {
         account.setStatement(accountDto.getStatementName());
         account.setComments(accountDto.getComment());
         this.accountRepository.save(account);
+    }
+
+    public boolean allAccountsExist(final Set<Long> ids) {
+        return !ids.isEmpty() && this.accountRepository.countDistinctByIdIn(ids).equals((long) ids.size());
     }
 
     private Account getAccountOrThrowException(final long accountNumber) {
@@ -97,5 +106,9 @@ public class AccountService {
         }
         account.setEnabled(false);
         this.accountRepository.save(account);
+    }
+
+    public void saveAll(final Collection<Account> accounts) {
+        this.accountRepository.saveAll(accounts);
     }
 }
