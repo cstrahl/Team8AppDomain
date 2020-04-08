@@ -29,7 +29,7 @@ public class AccountController {
     @GetMapping
     @PreAuthorize("isAuthenticated()")
     public Map<Long, AccountDto> getAccounts() {
-        return this.accountService.getAllAccounts();
+        return this.accountService.getAllAccountsDtoMap();
     }
 
     @GetMapping("/{accountId}")

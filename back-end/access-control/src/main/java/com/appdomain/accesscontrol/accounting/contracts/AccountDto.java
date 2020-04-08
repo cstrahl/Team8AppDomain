@@ -1,6 +1,8 @@
 package com.appdomain.accesscontrol.accounting.contracts;
 
 import com.appdomain.accesscontrol.accounting.domains.Account;
+import com.appdomain.accesscontrol.accounting.utils.AccountCategory;
+import com.appdomain.accesscontrol.accounting.utils.AccountSubCategory;
 import com.appdomain.accesscontrol.accounting.utils.TransactionType;
 
 import java.time.Instant;
@@ -11,8 +13,8 @@ public class AccountDto {
     private long accountNumber;
     private String description;
     private TransactionType normalSide;
-    private String category;
-    private String subcategory;
+    private AccountCategory category;
+    private AccountSubCategory subcategory;
     private double initialBalance;
     private double debit;
     private double credit;
@@ -31,8 +33,8 @@ public class AccountDto {
         this.accountNumber = account.getId();
         this.description = account.getDescription();
         this.normalSide = TransactionType.valueOf(account.getSide());
-        this.category = account.getCategory();
-        this.subcategory = account.getSubcategory();
+        this.category = AccountCategory.valueOf(account.getCategory());
+        this.subcategory = AccountSubCategory.valueOf(account.getSubcategory());
         this.initialBalance = account.getInitialBalance();
         this.debit = account.getDebit();
         this.credit = account.getCredit();
@@ -60,11 +62,11 @@ public class AccountDto {
         return normalSide;
     }
 
-    public String getCategory() {
+    public AccountCategory getCategory() {
         return category;
     }
 
-    public String getSubcategory() {
+    public AccountSubCategory getSubcategory() {
         return subcategory;
     }
 

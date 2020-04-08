@@ -21,7 +21,7 @@ public class LedgerEntryController {
         this.ledgerEntryService = ledgerEntryService;
     }
 
-    @GetMapping
+    @GetMapping("/account")
     @PreAuthorize("isAuthenticated()")
     public List<LedgerEntryDto> getAllEntries(@RequestParam final long accountId) {
         return this.ledgerEntryService.getAllEntriesInAccount(accountId);

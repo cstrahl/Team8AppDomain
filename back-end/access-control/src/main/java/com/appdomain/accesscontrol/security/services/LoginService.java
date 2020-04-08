@@ -6,6 +6,7 @@ import org.passay.PasswordGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -37,7 +38,7 @@ public class LoginService {
             //TODO: Abstract this to a CustomException where only message needs to be provided
             LOGGER.debug("Password given for user creation does not meet standards");
             throw HttpClientErrorException.create("Password does not meet rules", HttpStatus.BAD_REQUEST,
-                    "",null,null,null);
+                    "", HttpHeaders.EMPTY,null,null);
         }
 
         //TODO: write regex for email syntax verification
@@ -48,7 +49,7 @@ public class LoginService {
         } catch (ParseException e) {
             LOGGER.debug("Provided Date of Birth is not formatted right (yy/MM/dd)", e);
             throw HttpClientErrorException.create("Date of Birth has invalid format", HttpStatus.BAD_REQUEST,
-                    "",null,null,null);
+                    "",HttpHeaders.EMPTY,null,null);
         }
 
         //Creates the user but sets them to disabled until Admin approves them

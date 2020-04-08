@@ -6,6 +6,7 @@ import com.appdomain.accesscontrol.security.contracts.UserRegistrationRequest;
 import com.appdomain.accesscontrol.security.domains.User;
 import com.appdomain.accesscontrol.security.utils.UserContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -43,7 +44,7 @@ public class UserService {
         final CustomUserDetails currentAdmin = UserContext.getCurrentUser();
         if (!currentAdmin.getUser().getRole().equals("ROLE_ADMIN")) {
             throw HttpClientErrorException.create("Current user is not authorized for this action",
-                    HttpStatus.UNAUTHORIZED, "",null,null,null);
+                    HttpStatus.UNAUTHORIZED, "",HttpHeaders.EMPTY,null,null);
         }
         if (registrationRequest.isApproved()) {
             user.setUserName(getUserName(user));
@@ -80,7 +81,7 @@ public class UserService {
         if (!isValidPassword(updateRequest.getNewPass())) {
             //TODO make special exception (see LoginService.java)
             throw HttpClientErrorException.create("Password does not meet rules", HttpStatus.BAD_REQUEST,
-                    "",null,null,null);
+                    "", HttpHeaders.EMPTY,null,null);
         }
 
         final User user = UserContext.getCurrentUser().getUser();
