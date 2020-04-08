@@ -4,6 +4,7 @@ import com.appdomain.accesscontrol.accounting.contracts.AccountDto;
 import com.appdomain.accesscontrol.accounting.domains.Account;
 import com.appdomain.accesscontrol.accounting.repositories.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import java.nio.charset.Charset;
 import java.time.Instant;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -32,7 +34,7 @@ public class AccountService {
             currentUser = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         } catch (Exception e) {
             throw HttpClientErrorException.create("User Context not found", HttpStatus.UNAUTHORIZED,
-                    "", null, null, null);
+                    "", HttpHeaders.EMPTY, null, null);
         }
         this.accountRepository.save(
                 new Account(
@@ -40,7 +42,7 @@ public class AccountService {
                         true,
                         accountDto.getDescription(),
                         accountDto.getNormalSide().name(),
-                        accountDto.getCategory(),
+                        accountDto.getCategory().name(),
                         accountDto.getSubcategory(),
                         accountDto.getInitialBalance(),
                         accountDto.getDebit(),
@@ -53,10 +55,14 @@ public class AccountService {
                         accountDto.getComment()));
     }
 
-    public Map<Long, AccountDto> getAllAccounts() {
+    public Map<Long, AccountDto> getAllAccountsDtoMap() {
         return this.accountRepository.findAllByOrderBySortOrderAsc().stream()
                 .filter(Account::isEnabled)
                 .collect(Collectors.toMap(Account::getId, AccountDto::new));
+    }
+
+    public List<Account> getAllAccounts() {
+        return this.accountRepository.findAll();
     }
 
     public AccountDto getAccount(final long accountId) {
@@ -72,7 +78,7 @@ public class AccountService {
         account.setName(accountDto.getName());
         account.setDescription(accountDto.getDescription());
         account.setSide(accountDto.getNormalSide().name());
-        account.setCategory(accountDto.getCategory());
+        account.setCategory(accountDto.getCategory().name());
         account.setSubcategory(accountDto.getSubcategory());
         account.setDebit(accountDto.getDebit());
         account.setCredit(accountDto.getCredit());
@@ -90,10 +96,10 @@ public class AccountService {
     private Account getAccountOrThrowException(final long accountNumber) {
         Account account = this.accountRepository.findById(accountNumber)
                 .orElseThrow(() -> HttpClientErrorException.create("No active Account found with id",
-                        HttpStatus.BAD_REQUEST, "", null, null, Charset.defaultCharset()));
+                        HttpStatus.BAD_REQUEST, "", HttpHeaders.EMPTY, null, Charset.defaultCharset()));
         if (!account.isEnabled()) {
             throw HttpClientErrorException.create("No active Account found with id",
-                    HttpStatus.BAD_REQUEST, "", null, null, Charset.defaultCharset());
+                    HttpStatus.BAD_REQUEST, "", HttpHeaders.EMPTY, null, Charset.defaultCharset());
         }
         return account;
     }
@@ -102,7 +108,7 @@ public class AccountService {
         final Account account = this.getAccountOrThrowException(accountId);
         if (account.getBalance() != 0) {
             throw HttpClientErrorException.create("Account does not have zero balance", HttpStatus.BAD_REQUEST,
-                    "", null, null, Charset.defaultCharset());
+                    "", HttpHeaders.EMPTY, null, Charset.defaultCharset());
         }
         account.setEnabled(false);
         this.accountRepository.save(account);

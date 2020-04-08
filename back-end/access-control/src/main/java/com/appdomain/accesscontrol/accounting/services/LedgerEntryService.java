@@ -4,6 +4,7 @@ import com.appdomain.accesscontrol.accounting.contracts.LedgerEntryDto;
 import com.appdomain.accesscontrol.accounting.domains.Account;
 import com.appdomain.accesscontrol.accounting.domains.LedgerEntry;
 import com.appdomain.accesscontrol.accounting.repositories.LedgerEntryRepository;
+import com.appdomain.accesscontrol.accounting.utils.TransactionType;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -65,7 +66,12 @@ public class LedgerEntryService {
             ledgerEntry.setPending(false);
         });
         final Collection<Account> accounts = accountMap.values();
-        accounts.forEach(account -> account.setBalance(account.getDebit() - account.getCredit()));
+        accounts.forEach(account -> {
+            if (TransactionType.DEBIT.name().equals(account.getSide())) {
+                account.setBalance(account.getDebit() - account.getCredit());
+            }
+            else account.setBalance(account.getCredit() - account.getDebit());
+        });
         this.accountService.saveAll(accounts);
         this.ledgerEntryRepository.saveAll(entries);
     }

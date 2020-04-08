@@ -97,11 +97,7 @@ CREATE TABLE JournalEntries
     Review_Date   DATETIME     NULL,
     Document_Id   INT          NULL,
     Status        VARCHAR(50)  NULL,
-    Denied_Reason VARCHAR(250) NULL,
-
-    foreign key (Journal_Id) references Journals (Id),
-    foreign key (Creator_Id) references Users (Id),
-    foreign key (Reviewer_Id) references Users (Id)
+    Denied_Reason VARCHAR(250) NULL
 );
 
 DROP TABLE IF EXISTS LedgerEntries;
@@ -114,8 +110,5 @@ CREATE TABLE LedgerEntries
     Credit           DOUBLE,
     Debit            DOUBLE,
     Description      VARCHAR(250),
-    Pending          BIT      NOT NULL,
-
-    foreign key (Account_Id) references Accounts (Id),
-    foreign key (Journal_Entry_Id) references JournalEntries (Id)
+    Pending          BIT      NOT NULL
 );
