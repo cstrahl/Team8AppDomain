@@ -10,7 +10,7 @@ import java.time.Instant;
 import static java.lang.Long.parseLong;
 
 @Entity
-@Table(schema = "PUBLIC",name = "Users")
+@Table(schema = "PUBLIC", name = "Users")
 public class User {
 
     @Id

@@ -8,7 +8,7 @@ import javax.persistence.Table;
 import java.time.Instant;
 
 @Entity
-@Table(schema = "PUBLIC",name = "Accounts")
+@Table(schema = "PUBLIC", name = "Accounts")
 public class Account {
 
     @Id
@@ -174,6 +174,10 @@ public class Account {
 
     public void setSubcategory(String subcategory) {
         this.subcategory = subcategory;
+    }
+
+    public void setInitialBalance(double initialBalance) {
+        this.initialBalance = initialBalance;
     }
 
     public void setDebit(double debit) {

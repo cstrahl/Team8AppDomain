@@ -29,4 +29,12 @@ public class TrialBalanceDto {
     public double getTotalCredit() {
         return totalCredit;
     }
+
+    public void setTotalDebit(double totalDebit) {
+        this.totalDebit = totalDebit;
+    }
+
+    public void setTotalCredit(double totalCredit) {
+        this.totalCredit = totalCredit;
+    }
 }

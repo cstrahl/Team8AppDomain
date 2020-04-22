@@ -2,7 +2,7 @@ package com.appdomain.accesscontrol.accounting.services;
 
 import com.appdomain.accesscontrol.accounting.contracts.LedgerEntryDto;
 import com.appdomain.accesscontrol.accounting.domains.Account;
-import com.appdomain.accesscontrol.accounting.domains.LedgerEntry;
+import com.appdomain.accesscontrol.accounting.domains.Ledger_Entry;
 import com.appdomain.accesscontrol.accounting.repositories.LedgerEntryRepository;
 import com.appdomain.accesscontrol.accounting.utils.TransactionType;
 import org.springframework.stereotype.Service;
@@ -43,18 +43,18 @@ public class LedgerEntryService {
         return new LedgerEntryDto(this.ledgerEntryRepository.getOne(id));
     }
 
-    public List<LedgerEntry> createAndSaveAll(final List<LedgerEntryDto> ledgerEntryDtos, final long journalEntryId) {
+    public List<Ledger_Entry> createAndSaveAll(final List<LedgerEntryDto> ledgerEntryDtos, final long journalEntryId) {
         this.ledgerEntryRepository.deleteAll(this.ledgerEntryRepository.findAllByJournalEntryId(journalEntryId));
         return this.ledgerEntryRepository.saveAll(
                 ledgerEntryDtos.stream().map(ledgerEntryDto ->
-                        new LedgerEntry(ledgerEntryDto.getAccountId(), journalEntryId, ledgerEntryDto.getCredit(),
+                        new Ledger_Entry(ledgerEntryDto.getAccountId(), journalEntryId, ledgerEntryDto.getCredit(),
                                 ledgerEntryDto.getDebit(), ledgerEntryDto.getDescription()))
                         .collect(Collectors.toList()));
     }
 
     public void acceptAllForJournalEntry(final Long id) {
         final Map<Long, Account> accountMap = new HashMap<>();
-        final List<LedgerEntry> entries = this.ledgerEntryRepository.findAllByJournalEntryId(id);
+        final List<Ledger_Entry> entries = this.ledgerEntryRepository.findAllByJournalEntryId(id);
         entries.forEach(ledgerEntry -> {
             final Long accountId = ledgerEntry.getAccountId();
             if (!accountMap.containsKey(accountId)) {

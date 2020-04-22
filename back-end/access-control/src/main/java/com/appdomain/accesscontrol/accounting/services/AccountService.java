@@ -43,7 +43,7 @@ public class AccountService {
                         accountDto.getDescription(),
                         accountDto.getNormalSide().name(),
                         accountDto.getCategory().name(),
-                        accountDto.getSubcategory(),
+                        accountDto.getSubcategory().name(),
                         accountDto.getInitialBalance(),
                         accountDto.getDebit(),
                         accountDto.getCredit(),
@@ -79,7 +79,8 @@ public class AccountService {
         account.setDescription(accountDto.getDescription());
         account.setSide(accountDto.getNormalSide().name());
         account.setCategory(accountDto.getCategory().name());
-        account.setSubcategory(accountDto.getSubcategory());
+        account.setInitialBalance(accountDto.getInitialBalance());
+        account.setSubcategory(accountDto.getSubcategory().name());
         account.setDebit(accountDto.getDebit());
         account.setCredit(accountDto.getCredit());
         account.setBalance(accountDto.getBalance());

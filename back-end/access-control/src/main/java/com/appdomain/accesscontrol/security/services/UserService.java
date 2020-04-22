@@ -41,15 +41,15 @@ public class UserService {
                     registrationRequest.getUserEmail());
         }
 
-        final CustomUserDetails currentAdmin = UserContext.getCurrentUser();
-        if (!currentAdmin.getUser().getRole().equals("ROLE_ADMIN")) {
+        final User currentAdmin = this.userDetailsService.loadUserByEmail(UserContext.getCurrentUserName());
+        if (!currentAdmin.getRole().equals("ROLE_ADMIN")) {
             throw HttpClientErrorException.create("Current user is not authorized for this action",
                     HttpStatus.UNAUTHORIZED, "",HttpHeaders.EMPTY,null,null);
         }
         if (registrationRequest.isApproved()) {
             user.setUserName(getUserName(user));
             user.setRole(registrationRequest.getRole());
-            user.setRegisteredBy(currentAdmin.getUser().getId());
+            user.setRegisteredBy(currentAdmin.getId());
             user.setLockoutEnd(Instant.now());
             user.setAwaitingRegistration(false);
             //TODO: Send email to user stating that their account has been confirmed
@@ -84,7 +84,7 @@ public class UserService {
                     "", HttpHeaders.EMPTY,null,null);
         }
 
-        final User user = UserContext.getCurrentUser().getUser();
+        final User user = this.userDetailsService.loadUserByEmail(UserContext.getCurrentUserName());
         if (!user.isTempPassword()) {
             //TODO: Register users old password hash in password history table
         }
