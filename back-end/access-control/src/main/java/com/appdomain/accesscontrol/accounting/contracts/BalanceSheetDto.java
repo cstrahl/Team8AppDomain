@@ -59,6 +59,18 @@ public class BalanceSheetDto {
         return totalLiabilitiesAndEquity;
     }
 
+    public void setTotalAssets(Double totalAssets) {
+        this.totalAssets = totalAssets;
+    }
+
+    public void setTotalLiabilities(Double totalLiabilities) {
+        this.totalLiabilities = totalLiabilities;
+    }
+
+    public void setTotalEquity(Double totalEquity) {
+        this.totalEquity = totalEquity;
+    }
+
     public void setTotalLiabilitiesAndEquity(Double totalLiabilitiesAndEquity) {
         this.totalLiabilitiesAndEquity = totalLiabilitiesAndEquity;
     }

@@ -1,5 +1,4 @@
-DROP TABLE IF EXISTS Users;
-CREATE TABLE Users
+CREATE TABLE IF NOT EXISTS Users
 (
     Id                    INT AUTO_INCREMENT PRIMARY KEY,
     Username              VARCHAR(100) UNIQUE,
@@ -17,48 +16,64 @@ CREATE TABLE Users
     Temp_Password         BOOLEAN
 );
 
-INSERT INTO Users (Username,
-                   First_Name,
-                   Last_Name,
-                   Email,
-                   Date_Of_Birth,
-                   Password_Hash,
-                   Lockout_End,
-                   Login_Attempts,
-                   Password_Create_Date,
-                   Assigned_Role,
-                   Registered_By,
-                   Awaiting_Registration,
-                   Temp_Password)
-VALUES ('TAdmin0000',
-        'Test',
-        'Admin',
-        'TestAdmin@testing.com',
-        now(),
-        '$2a$10$7xCQwLaBoTDmk/E4lksT4OcBWFlKZroC806TgLJVrKmo56GuXbhze',
-        now(),
-        0,
-        now(),
-        'ROLE_ADMIN',
-        1,
-        false,
-        false),
-       ('TManager0000',
-        'Test',
-        'Manager',
-        'TestManager@testing.com',
-        now(),
-        '$2a$10$7xCQwLaBoTDmk/E4lksT4OcBWFlKZroC806TgLJVrKmo56GuXbhze',
-        now(),
-        0,
-        now(),
-        'ROLE_ADMIN',
-        1,
-        false,
-        false);
+MERGE INTO Users (Id,
+                  Username,
+                  First_Name,
+                  Last_Name,
+                  Email,
+                  Date_Of_Birth,
+                  Password_Hash,
+                  Lockout_End,
+                  Login_Attempts,
+                  Password_Create_Date,
+                  Assigned_Role,
+                  Registered_By,
+                  Awaiting_Registration,
+                  Temp_Password)
+    VALUES (1,
+            'TAdmin0000',
+            'Test',
+            'Admin',
+            'TestAdmin@testing.com',
+            now(),
+            '$2a$10$7xCQwLaBoTDmk/E4lksT4OcBWFlKZroC806TgLJVrKmo56GuXbhze',
+            now(),
+            0,
+            now(),
+            'ROLE_ADMIN',
+            1,
+            false,
+            false),
+           (2,
+            'TManager0000',
+            'Test',
+            'Manager',
+            'TestManager@testing.com',
+            now(),
+            '$2a$10$7xCQwLaBoTDmk/E4lksT4OcBWFlKZroC806TgLJVrKmo56GuXbhze',
+            now(),
+            0,
+            now(),
+            'ROLE_MANAGER',
+            1,
+            false,
+            false),
+           (3,
+            'TAccountant0000',
+            'Test',
+            'Accountant',
+            'TestAccountant@testing.com',
+            now(),
+            '$2a$10$7xCQwLaBoTDmk/E4lksT4OcBWFlKZroC806TgLJVrKmo56GuXbhze',
+            now(),
+            0,
+            now(),
+            'ROLE_USER',
+            1,
+            false,
+            false);
 
-DROP TABLE IF EXISTS Accounts;
-CREATE TABLE Accounts
+CREATE TABLE IF NOT EXISTS Accounts
 (
     Id              INT AUTO_INCREMENT PRIMARY KEY,
     Name            VARCHAR(100) UNIQUE,
@@ -78,16 +93,14 @@ CREATE TABLE Accounts
     Comments        VARCHAR(250)
 );
 
-DROP TABLE IF EXISTS Journals;
-CREATE TABLE Journals
+CREATE TABLE IF NOT EXISTS Journals
 (
     Id         INT AUTO_INCREMENT PRIMARY KEY,
     Start_Date DATETIME NOT NULL,
     End_Date   DATETIME NOT NULL
 );
 
-DROP TABLE IF EXISTS JournalEntries;
-CREATE TABLE JournalEntries
+CREATE TABLE IF NOT EXISTS Journal_Entry
 (
     Id            INT AUTO_INCREMENT PRIMARY KEY,
     Journal_Id    INT          NOT NULL,
@@ -100,8 +113,7 @@ CREATE TABLE JournalEntries
     Denied_Reason VARCHAR(250) NULL
 );
 
-DROP TABLE IF EXISTS LedgerEntries;
-CREATE TABLE LedgerEntries
+CREATE TABLE IF NOT EXISTS Ledger_Entry
 (
     Id               INT AUTO_INCREMENT PRIMARY KEY,
     Account_Id       INT      NOT NULL,

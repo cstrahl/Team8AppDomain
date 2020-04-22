@@ -1,6 +1,6 @@
 package com.appdomain.accesscontrol.accounting.contracts;
 
-import com.appdomain.accesscontrol.accounting.domains.LedgerEntry;
+import com.appdomain.accesscontrol.accounting.domains.Ledger_Entry;
 
 public class LedgerEntryDto {
 
@@ -15,7 +15,7 @@ public class LedgerEntryDto {
     public LedgerEntryDto() {
     }
 
-    public LedgerEntryDto(final LedgerEntry ledgerEntry) {
+    public LedgerEntryDto(final Ledger_Entry ledgerEntry) {
         this.id = ledgerEntry.getId();
         this.accountId = ledgerEntry.getAccountId();
         this.journalEntryId = ledgerEntry.getJournalEntryId();

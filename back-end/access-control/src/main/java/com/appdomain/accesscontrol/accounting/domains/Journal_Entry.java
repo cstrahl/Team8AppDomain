@@ -1,7 +1,5 @@
 package com.appdomain.accesscontrol.accounting.domains;
 
-import com.appdomain.accesscontrol.accounting.utils.JournalEntryStatus;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,8 +8,8 @@ import javax.persistence.Table;
 import java.time.Instant;
 
 @Entity
-@Table(schema = "PUBLIC", catalog = "JournalEntries")
-public class JournalEntry {
+@Table(schema = "PUBLIC", name = "Journal_Entry")
+public class Journal_Entry {
 
     @Id
     @Column(name = "Id", unique = true, nullable = false, updatable = false)
@@ -42,16 +40,16 @@ public class JournalEntry {
     @Column(name = "Denied_Reason")
     private String deniedReason;
 
-    public JournalEntry() {
+    public Journal_Entry() {
     }
 
-    public JournalEntry(final Long journalId,
-                        final Long creatorId,
-                        final Long reviewerId,
-                        final Instant reviewDate,
-                        final Long documentId,
-                        final String status,
-                        final String deniedReason) {
+    public Journal_Entry(final Long journalId,
+                         final Long creatorId,
+                         final Long reviewerId,
+                         final Instant reviewDate,
+                         final Long documentId,
+                         final String status,
+                         final String deniedReason) {
         this.journalId = journalId;
         this.creatorId = creatorId;
         this.createDate = Instant.now();

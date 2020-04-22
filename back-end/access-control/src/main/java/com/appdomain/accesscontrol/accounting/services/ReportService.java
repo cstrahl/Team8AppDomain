@@ -24,12 +24,10 @@ public class ReportService {
         this.accountService = accountService;
     }
 
-
     public TrialBalanceDto getTrialBalance() {
         final TrialBalanceDto trialBalanceDto = new TrialBalanceDto(new ArrayList<>(), 0.0, 0.0);
         final List<Account> accounts = this.accountService.getAllAccounts();
-        accounts.forEach(account -> this.incrementAccount(account, trialBalanceDto.getAccountEntries(),
-                trialBalanceDto.getTotalDebit(), trialBalanceDto.getTotalCredit()));
+        accounts.forEach(account -> this.incrementAccount(account, trialBalanceDto));
         return trialBalanceDto;
     }
 
@@ -41,16 +39,34 @@ public class ReportService {
         for (Account account : accounts) {
             switch (AccountCategory.valueOf(account.getCategory())) {
                 case ASSET:
-                    this.incrementAccount(account, balanceSheetDto.getAssets(),
-                            balanceSheetDto.getTotalAssets(), balanceSheetDto.getTotalAssets());
+                    if (DEBIT.name().equals(account.getSide())) {
+                        balanceSheetDto.getAssets().add(new SimpleAccountDto(
+                                account.getName(), DEBIT, account.getBalance(), 0.0));
+                    } else {
+                        balanceSheetDto.getAssets().add(new SimpleAccountDto(
+                                account.getName(), CREDIT, 0.0, account.getBalance()));
+                    }
+                    balanceSheetDto.setTotalAssets(balanceSheetDto.getTotalAssets() + account.getBalance());
                     break;
                 case LIABILITY:
-                    this.incrementAccount(account, balanceSheetDto.getLiabilities(),
-                            balanceSheetDto.getTotalLiabilities(), balanceSheetDto.getTotalLiabilities());
+                    if (DEBIT.name().equals(account.getSide())) {
+                        balanceSheetDto.getLiabilities().add(new SimpleAccountDto(
+                                account.getName(), DEBIT, account.getBalance(), 0.0));
+                    } else {
+                        balanceSheetDto.getLiabilities().add(new SimpleAccountDto(
+                                account.getName(), CREDIT, 0.0, account.getBalance()));
+                    }
+                    balanceSheetDto.setTotalLiabilities(balanceSheetDto.getTotalLiabilities() + account.getBalance());
                     break;
                 case EQUITY:
-                    this.incrementAccount(account, balanceSheetDto.getEquity(),
-                            balanceSheetDto.getTotalEquity(), balanceSheetDto.getTotalEquity());
+                    if (DEBIT.name().equals(account.getSide())) {
+                        balanceSheetDto.getEquity().add(new SimpleAccountDto(
+                                account.getName(), DEBIT, account.getBalance(), 0.0));
+                    } else {
+                        balanceSheetDto.getEquity().add(new SimpleAccountDto(
+                                account.getName(), CREDIT, 0.0, account.getBalance()));
+                    }
+                    balanceSheetDto.setTotalEquity(balanceSheetDto.getTotalEquity() + account.getBalance());
                     break;
             }
         }
@@ -66,12 +82,24 @@ public class ReportService {
         for (Account account : accounts) {
             switch (AccountSubCategory.valueOf(account.getSubcategory())) {
                 case REVENUE:
-                    this.incrementAccount(account, netIncomeDto.getRevenues(),
-                            netIncomeDto.getTotalRevenue(), netIncomeDto.getTotalRevenue());
+                    if (DEBIT.name().equals(account.getSide())) {
+                        netIncomeDto.getRevenues().add(new SimpleAccountDto(
+                                account.getName(), DEBIT, account.getBalance(), 0.0));
+                    } else {
+                        netIncomeDto.getRevenues().add(new SimpleAccountDto(
+                                account.getName(), CREDIT, 0.0, account.getBalance()));
+                    }
+                    netIncomeDto.setTotalRevenue(netIncomeDto.getTotalRevenue() + account.getBalance());
                     break;
                 case EXPENSE:
-                    this.incrementAccount(account, netIncomeDto.getExpenses(),
-                            netIncomeDto.getTotalExpenses(), netIncomeDto.getTotalExpenses());
+                    if (DEBIT.name().equals(account.getSide())) {
+                        netIncomeDto.getExpenses().add(new SimpleAccountDto(
+                                account.getName(), DEBIT, account.getBalance(), 0.0));
+                    } else {
+                        netIncomeDto.getExpenses().add(new SimpleAccountDto(
+                                account.getName(), CREDIT, 0.0, account.getBalance()));
+                    }
+                    netIncomeDto.setTotalExpenses(netIncomeDto.getTotalExpenses() + account.getBalance());
                     break;
             }
         }
@@ -79,14 +107,15 @@ public class ReportService {
         return netIncomeDto;
     }
 
-    private void incrementAccount(final Account account, final List<SimpleAccountDto> accountList,
-                                  Double debit, Double credit) {
+    private void incrementAccount(final Account account, final TrialBalanceDto trialBalanceDto) {
         if (DEBIT.name().equals(account.getSide())) {
-            accountList.add(new SimpleAccountDto(account.getName(), DEBIT, account.getBalance(), 0.0));
-            debit += account.getBalance();
+            trialBalanceDto.getAccountEntries().add(new SimpleAccountDto(
+                    account.getName(), DEBIT, account.getBalance(), 0.0));
+            trialBalanceDto.setTotalDebit(trialBalanceDto.getTotalDebit() + account.getBalance());
         } else {
-            accountList.add(new SimpleAccountDto(account.getName(), CREDIT, 0.0, account.getBalance()));
-            credit += account.getBalance();
+            trialBalanceDto.getAccountEntries().add(new SimpleAccountDto(
+                    account.getName(), CREDIT, 0.0, account.getBalance()));
+            trialBalanceDto.setTotalCredit(trialBalanceDto.getTotalCredit() + account.getBalance());
         }
     }
 }

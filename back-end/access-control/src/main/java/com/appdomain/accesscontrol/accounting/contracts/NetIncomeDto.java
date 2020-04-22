@@ -45,6 +45,14 @@ public class NetIncomeDto {
         return grossNetIncome;
     }
 
+    public void setTotalRevenue(Double totalRevenue) {
+        this.totalRevenue = totalRevenue;
+    }
+
+    public void setTotalExpenses(Double totalExpenses) {
+        this.totalExpenses = totalExpenses;
+    }
+
     public void setGrossNetIncome(Double grossNetIncome) {
         this.grossNetIncome = grossNetIncome;
     }

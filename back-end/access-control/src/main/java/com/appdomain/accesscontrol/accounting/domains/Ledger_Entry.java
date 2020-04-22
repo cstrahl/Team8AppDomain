@@ -8,8 +8,8 @@ import javax.persistence.Table;
 import java.time.Instant;
 
 @Entity
-@Table(schema = "PUBLIC", catalog = "LedgerEntries")
-public class LedgerEntry {
+@Table(schema = "PUBLIC", name = "Ledger_Entry")
+public class Ledger_Entry {
 
     @Id
     @Column(name = "Id", unique = true, nullable = false, updatable = false)
@@ -37,14 +37,14 @@ public class LedgerEntry {
     @Column(name= "Pending", nullable = false)
     private Boolean pending;
 
-    public LedgerEntry() {
+    public Ledger_Entry() {
     }
 
-    public LedgerEntry(final Long accountId,
-                       final Long journalEntryId,
-                       final Double credit,
-                       final Double debit,
-                       final String description) {
+    public Ledger_Entry(final Long accountId,
+                        final Long journalEntryId,
+                        final Double credit,
+                        final Double debit,
+                        final String description) {
         this.accountId = accountId;
         this.journalEntryId = journalEntryId;
         this.pending = true;
