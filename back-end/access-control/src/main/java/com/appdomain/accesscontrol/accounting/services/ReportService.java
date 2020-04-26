@@ -40,31 +40,31 @@ public class ReportService {
             switch (AccountCategory.valueOf(account.getCategory())) {
                 case ASSET:
                     if (DEBIT.name().equals(account.getSide())) {
-                        balanceSheetDto.getAssets().add(new SimpleAccountDto(
-                                account.getName(), DEBIT, account.getBalance(), 0.0));
+                        balanceSheetDto.getAssets().add(new SimpleAccountDto(account.getName(), DEBIT,
+                                AccountSubCategory.valueOf(account.getSubcategory()), account.getBalance(), 0.0));
                     } else {
-                        balanceSheetDto.getAssets().add(new SimpleAccountDto(
-                                account.getName(), CREDIT, 0.0, account.getBalance()));
+                        balanceSheetDto.getAssets().add(new SimpleAccountDto(account.getName(), CREDIT,
+                                AccountSubCategory.valueOf(account.getSubcategory()), 0.0, account.getBalance()));
                     }
                     balanceSheetDto.setTotalAssets(balanceSheetDto.getTotalAssets() + account.getBalance());
                     break;
                 case LIABILITY:
                     if (DEBIT.name().equals(account.getSide())) {
-                        balanceSheetDto.getLiabilities().add(new SimpleAccountDto(
-                                account.getName(), DEBIT, account.getBalance(), 0.0));
+                        balanceSheetDto.getLiabilities().add(new SimpleAccountDto(account.getName(), DEBIT,
+                                AccountSubCategory.valueOf(account.getSubcategory()), account.getBalance(), 0.0));
                     } else {
-                        balanceSheetDto.getLiabilities().add(new SimpleAccountDto(
-                                account.getName(), CREDIT, 0.0, account.getBalance()));
+                        balanceSheetDto.getLiabilities().add(new SimpleAccountDto(account.getName(), CREDIT,
+                                AccountSubCategory.valueOf(account.getSubcategory()), 0.0, account.getBalance()));
                     }
                     balanceSheetDto.setTotalLiabilities(balanceSheetDto.getTotalLiabilities() + account.getBalance());
                     break;
                 case EQUITY:
                     if (DEBIT.name().equals(account.getSide())) {
-                        balanceSheetDto.getEquity().add(new SimpleAccountDto(
-                                account.getName(), DEBIT, account.getBalance(), 0.0));
+                        balanceSheetDto.getEquity().add(new SimpleAccountDto(account.getName(), DEBIT,
+                                AccountSubCategory.valueOf(account.getSubcategory()), account.getBalance(), 0.0));
                     } else {
-                        balanceSheetDto.getEquity().add(new SimpleAccountDto(
-                                account.getName(), CREDIT, 0.0, account.getBalance()));
+                        balanceSheetDto.getEquity().add(new SimpleAccountDto(account.getName(), CREDIT,
+                                AccountSubCategory.valueOf(account.getSubcategory()), 0.0, account.getBalance()));
                     }
                     balanceSheetDto.setTotalEquity(balanceSheetDto.getTotalEquity() + account.getBalance());
                     break;
@@ -83,21 +83,21 @@ public class ReportService {
             switch (AccountSubCategory.valueOf(account.getSubcategory())) {
                 case REVENUE:
                     if (DEBIT.name().equals(account.getSide())) {
-                        netIncomeDto.getRevenues().add(new SimpleAccountDto(
-                                account.getName(), DEBIT, account.getBalance(), 0.0));
+                        netIncomeDto.getRevenues().add(new SimpleAccountDto(account.getName(), DEBIT,
+                                AccountSubCategory.valueOf(account.getSubcategory()), account.getBalance(), 0.0));
                     } else {
-                        netIncomeDto.getRevenues().add(new SimpleAccountDto(
-                                account.getName(), CREDIT, 0.0, account.getBalance()));
+                        netIncomeDto.getRevenues().add(new SimpleAccountDto(account.getName(), CREDIT,
+                                AccountSubCategory.valueOf(account.getSubcategory()), 0.0, account.getBalance()));
                     }
                     netIncomeDto.setTotalRevenue(netIncomeDto.getTotalRevenue() + account.getBalance());
                     break;
                 case EXPENSE:
                     if (DEBIT.name().equals(account.getSide())) {
-                        netIncomeDto.getExpenses().add(new SimpleAccountDto(
-                                account.getName(), DEBIT, account.getBalance(), 0.0));
+                        netIncomeDto.getExpenses().add(new SimpleAccountDto(account.getName(), DEBIT,
+                                AccountSubCategory.valueOf(account.getSubcategory()), account.getBalance(), 0.0));
                     } else {
-                        netIncomeDto.getExpenses().add(new SimpleAccountDto(
-                                account.getName(), CREDIT, 0.0, account.getBalance()));
+                        netIncomeDto.getExpenses().add(new SimpleAccountDto(account.getName(), CREDIT,
+                                AccountSubCategory.valueOf(account.getSubcategory()), 0.0, account.getBalance()));
                     }
                     netIncomeDto.setTotalExpenses(netIncomeDto.getTotalExpenses() + account.getBalance());
                     break;
@@ -109,12 +109,12 @@ public class ReportService {
 
     private void incrementAccount(final Account account, final TrialBalanceDto trialBalanceDto) {
         if (DEBIT.name().equals(account.getSide())) {
-            trialBalanceDto.getAccountEntries().add(new SimpleAccountDto(
-                    account.getName(), DEBIT, account.getBalance(), 0.0));
+            trialBalanceDto.getAccountEntries().add(new SimpleAccountDto(account.getName(), DEBIT,
+                    AccountSubCategory.valueOf(account.getSubcategory()), account.getBalance(), 0.0));
             trialBalanceDto.setTotalDebit(trialBalanceDto.getTotalDebit() + account.getBalance());
         } else {
-            trialBalanceDto.getAccountEntries().add(new SimpleAccountDto(
-                    account.getName(), CREDIT, 0.0, account.getBalance()));
+            trialBalanceDto.getAccountEntries().add(new SimpleAccountDto(account.getName(), CREDIT,
+                    AccountSubCategory.valueOf(account.getSubcategory()), 0.0, account.getBalance()));
             trialBalanceDto.setTotalCredit(trialBalanceDto.getTotalCredit() + account.getBalance());
         }
     }
