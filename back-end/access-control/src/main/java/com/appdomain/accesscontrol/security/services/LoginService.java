@@ -74,7 +74,9 @@ public class LoginService {
         user.setPasswordHash(this.passwordEncoder.encode(tempPassword));
         user.setPasswordCreateDate(Instant.now());
         user.setTempPassword(true);
-        LOGGER.debug("Sending email to user to reset password: " + email);
+        LOGGER.info("Sending email to user to reset password: " + email);
+        LOGGER.info(tempPassword);
+        this.userDetailsService.saveCustomUser(user);
         //TODO: Send email
     }
 

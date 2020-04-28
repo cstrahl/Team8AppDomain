@@ -25,8 +25,12 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
-        return new CustomUserDetails(this.customUserRepository.findByUserName(username)
-                .orElseThrow(() -> new UsernameNotFoundException("No User found with userName: " + username)));
+        return new CustomUserDetails(this.getUserByUsername(username));
+    }
+
+    public User getUserByUsername(final String username) throws UsernameNotFoundException {
+        return this.customUserRepository.findByUserName(username)
+                .orElseThrow(() -> new UsernameNotFoundException("No User found with userName: " + username));
     }
 
     //TODO: Make custom error for this

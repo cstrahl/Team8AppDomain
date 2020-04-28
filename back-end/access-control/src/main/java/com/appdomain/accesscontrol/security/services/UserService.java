@@ -34,14 +34,14 @@ public class UserService {
     }
 
     public void processRegistration(final UserRegistrationRequest registrationRequest) {
-        User user = this.userDetailsService.loadUserByEmail(registrationRequest.getUserEmail());
+        final User user = this.userDetailsService.loadUserByEmail(registrationRequest.getUserEmail());
         //TODO: Create more specific error
-        if (user.isAwaitingRegistration()) {
+        if (!user.isAwaitingRegistration()) {
             throw new UsernameNotFoundException("No User awaiting registration found with email: " +
                     registrationRequest.getUserEmail());
         }
 
-        final User currentAdmin = this.userDetailsService.loadUserByEmail(UserContext.getCurrentUserName());
+        final User currentAdmin = this.userDetailsService.getUserByUsername(UserContext.getCurrentUserName());
         if (!currentAdmin.getRole().equals("ROLE_ADMIN")) {
             throw HttpClientErrorException.create("Current user is not authorized for this action",
                     HttpStatus.UNAUTHORIZED, "",HttpHeaders.EMPTY,null,null);
@@ -52,6 +52,7 @@ public class UserService {
             user.setRegisteredBy(currentAdmin.getId());
             user.setLockoutEnd(Instant.now());
             user.setAwaitingRegistration(false);
+            this.userDetailsService.saveCustomUser(user);
             //TODO: Send email to user stating that their account has been confirmed
         } else {
             this.userDetailsService.deleteUser(user);
@@ -84,7 +85,7 @@ public class UserService {
                     "", HttpHeaders.EMPTY,null,null);
         }
 
-        final User user = this.userDetailsService.loadUserByEmail(UserContext.getCurrentUserName());
+        final User user = this.userDetailsService.getUserByUsername(UserContext.getCurrentUserName());
         if (!user.isTempPassword()) {
             //TODO: Register users old password hash in password history table
         }
