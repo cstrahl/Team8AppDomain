@@ -71,7 +71,7 @@ public class DashboardService {
     public RatioDto calculateQuickRatio() {
         final BalanceSheetDto balanceSheet = this.reportService.getBalanceSheet();
         final double totalNonLiquidAssets = this.getTotalNonLiquidAssets(balanceSheet);
-        final double currentRatio = toPercent(balanceSheet.getTotalAssets() - totalNonLiquidAssets
+        final double currentRatio = toPercent((balanceSheet.getTotalAssets() - totalNonLiquidAssets)
                 / balanceSheet.getTotalLiabilities());
         if (currentRatio > 100) {
             if (currentRatio >= 120) {
@@ -86,7 +86,7 @@ public class DashboardService {
         final BalanceSheetDto balanceSheet = this.reportService.getBalanceSheet();
         final double totalNonLiquidAssets = this.getTotalNonLiquidAssets(balanceSheet);
         final double currentRatio = toPercent(totalNonLiquidAssets
-                / balanceSheet.getTotalAssets() - balanceSheet.getTotalLiabilities());
+                / (balanceSheet.getTotalAssets() - balanceSheet.getTotalLiabilities()));
         if (currentRatio < 100) {
             if (currentRatio <= 75) {
                 return new RatioDto(currentRatio, AlertLevel.GREEN);
